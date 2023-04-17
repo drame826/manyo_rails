@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    models:
+      task: "タスク"
+    attributes:
+      task:
+        title: "タイトル"
+        content: "内容"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: "タイトルを入力してください"
+            content: 
+              blank: "内容を入力してください"
+  global:
+    tasks_index: "タスク一覧"
+    new_task: "タスクを登録する"
+  common:
+    title: "タイトル"
+    content: "内容"
+    created_at: "作成日時"
+    tasks_index: "タスク一覧ページ"
+    show: "詳細"
+    edit: "編集"
+    destroy: "削除"
+    new_task: "タスク登録ページ"
+    create_task: "登録する"
+    back: "戻る"
+    show_task: "タスク詳細ページ"
+    edit_task: "タスク編集ページ"
+    update_task: "更新する"
+    confirm: "本当に削除してもよろしいですか？"
+    created: "タスクを登録しました"
+    updated: "タスクを更新しました"
+    destroyed: "タスクを削除しました"
