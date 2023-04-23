@@ -6,6 +6,9 @@ ja:
       task:
         title: "タイトル"
         content: "内容"
+        deadline_on: "締切日"
+        priority: "優先順位"
+        status: "地位"
     errors:
       models:
         task:
@@ -14,6 +17,22 @@ ja:
               blank: "タイトルを入力してください"
             content: 
               blank: "内容を入力してください"
+            deadline_on:
+              blank: "終了期限を入力してください"
+            priority:
+              blank: "優先度を入力してください"
+            status:  
+              blank: "ステータスを入力してください"
+  enums:
+    task:
+      priority_enum:
+        low: "低"
+        medium: "中"
+        high: "高"
+      status_enum:
+        todo: "未着手"
+        doing: "着手中"
+        done: "完了"            
   global:
     tasks_index: "タスク一覧"
     new_task: "タスクを登録する"
@@ -21,6 +40,9 @@ ja:
     title: "タイトル"
     content: "内容"
     created_at: "作成日時"
+    deadline: "終了期限"
+    priority: "優先度"
+    status: "ステータス"
     tasks_index: "タスク一覧ページ"
     show: "詳細"
     edit: "編集"
@@ -31,6 +53,7 @@ ja:
     show_task: "タスク詳細ページ"
     edit_task: "タスク編集ページ"
     update_task: "更新する"
+    search: "検索" 
     confirm: "本当に削除してもよろしいですか？"
     created: "タスクを登録しました"
     updated: "タスクを更新しました"

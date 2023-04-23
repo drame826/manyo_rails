@@ -26,6 +26,21 @@
     <%= form.label :content %><br>
     <%= form.text_area :content %>
   </div>
+  <div class="field">
+  <%= form.label :deadline_on %>
+  <%= form.date_field :deadline_on %>
+  </div>
+  <div class="field">
+  <%= form.label :priority %>
+  <%= form.select :priority, Task.priorities.map { |k, v| [t("enum.task.priority.#{k}"), k]}, include_blank: true %>
+  </div>
+
+  <div class="field">
+  <%= form.label :status %>
+  <%= form.select :status, Task.statuses.map { |k, v| [t("enum.task.status.#{k}"), k]}, include_blank: true %>
+  </div>
+
+  
   
     <div class="actions">
       <%= form.submit t("common.create_task"), id: "create-task" %>
