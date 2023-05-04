@@ -10,10 +10,26 @@
   </head>
 
   <body>
-    <ul>
-    <li><%= link_to t("global.tasks_index"), tasks_path, id: "tasks-index" %></li>
-    <li><%= link_to t("global.new_task"), new_task_path, id: "new-task" %></li>
-    </ul>
-    <%= yield %>
+  <% flash.each do |key, value| %>
+    <p class="<%= key %>"><%= value %></p>
+  <% end %>
+  <ul>
+    <% if current_user %>
+      <% if current_user.admin? %>
+        <li><%= link_to t("layouts.application.users_index"), admin_users_path, id: "users-index" %></li>
+      <% end %>
+      <% if current_user.admin? %>
+        <li><%= link_to t("users.new.register"), new_admin_user_path, id: "add-user" %></li>
+      <% end %>
+      <li><%= link_to t("layouts.application.tasks_index"), tasks_path %> </li>
+      <li><%= link_to t("tasks.new.register"), new_task_path %></li>
+      <li><%= link_to t("layouts.application.account_settings"), user_path(current_user), id: "account-setting" %></li>
+      <li><%= link_to t("layouts.application.sign_out"), logout_path, method: :delete, id: "sign-out" %></li>
+    <% else %>
+      <li><%= link_to t("layouts.application.sign_up"), new_user_form_path, id: "sign-up" %></li>
+      <li><%= link_to t("layouts.application.sign_in"), new_session_path, id: "sign-in" %></li>
+    <% end %>
+  </ul>
+  <%= yield %>
   </body>
 </html>

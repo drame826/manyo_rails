@@ -1,32 +1,73 @@
-fr:
+ja:
   activerecord:
     models:
-      task: Tâche
+      task: "タスク"
     attributes:
       task:
-        title: Titre
-        content: Contenu
+        title: "タイトル"
+        content: "内容"
+        deadline_on: "締切日"
+        priority: "優先順位"
+        status: "地位"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: "タイトルを入力してください"
+            content: 
+              blank: "内容を入力してください"
+            deadline_on:
+              blank: "終了期限を入力してください"
+            priority:
+              blank: "優先度を入力してください"
+            status:  
+              blank: "ステータスを入力してください"
+  enums:
+    task:
+      priority_enum:
+        low: "低"
+        medium: "中"
+        high: "高"
+      status_enum:
+        todo: "未着手"
+        doing: "着手中"
+        done: "完了"            
   global:
-    tasks_index: Liste des tâches
-    new_task: Enregistrer une tâche
-  validation:
-    title: Veuillez entrer un titre
-    content: Veuillez saisir le contenu   
+    tasks_index: "タスク一覧"
+    new_task: "タスクを登録する"
+    sign_in: "ログイン"
+    sign_up: "アカウント登録"
+    sign_out: "ログアウト"
+    my_account: "アカウント設定"
   common:
-    title: Titre
-    content: Contenu
-    created_at: Date et heure de création
-    tasks_index: Page de la liste des tâches
-    show: Détail
-    edit: Editer
-    destroy: Supprimer
-    new_task: Page d'enregistrement des tâches
-    create_task: Enregistrer
-    back: Retourner
-    show_task: Page de détail de la tâche  
-    edit_task: Page d'édition des tâches
-    update_task: Mise à jour
-    confirm: Vous êtes sûr de vouloir le supprimer ?
-    created: Tâche enregistrée
-    updated: Tâche mise à jour
-    destroyed: Tâche supprimée
+    title: "タイトル"
+    content: "内容"
+    created_at: "作成日時"
+    deadline: "終了期限"
+    priority: "優先度"
+    status: "ステータス"
+    tasks_index: "タスク一覧ページ"
+    show: "詳細"
+    edit: "編集"
+    destroy: "削除"
+    new_task: "タスク登録ページ"
+    create_task: "登録する"
+    back: "戻る"
+    show_task: "タスク詳細ページ"
+    edit_task: "タスク編集ページ"
+    update_task: "更新する"
+    search: "検索" 
+    confirm: "本当に削除してもよろしいですか？"
+    created: "タスクを登録しました"
+    updated: "タスクを更新しました"
+    destroyed: "タスクを削除しました"
+    new_user: "アカウント登録ページ"
+    edit_user: "アカウント編集ページ"
+    show_user: "アカウント詳細ページ"
+    session: "ログインページ"
+    login: "ログイン" 
+    create_user: "登録する"
+    update_user: "更新する"
+    user_index: "ユーザ一覧"
+    add_user: "ユーザを登録する"
