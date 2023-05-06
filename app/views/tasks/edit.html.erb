@@ -1,9 +1,9 @@
-<h1><%= t("common.edit_task") %></h1>
+<h1><%= t(".title") %></h1>
 
 <%= form_with(model: @task, url: task_path(@task), local: true) do |form| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= @task.errors.count %> 件のエラーが発生しました</h2>
 
       <ul>
       <% @task.errors.full_messages.each do |message| %>
@@ -24,23 +24,23 @@
   </div>
 
   <div class="field">
-  <%= form.label :deadline_on %>
-  <%= form.date_field :deadline_on %>
+    <%= form.label :deadline_on %>
+    <%= form.date_field :deadline_on %>
   </div>
 
   <div class="field">
-  <%= form.label :priority %>
-  <%= form.select :priority, Task.priorities.map { |k, v| [t("enum.task.priority.#{k}"), k]}, include_blank: true %>
+    <%= form.label :priority %>
+    <%= form.select :priority, options_for_select(Task.priorities.map { |label, _value| [t("enums.task.priority_enum.#{label}"), label.to_s] }, selected: @task&.priority&.to_s) %>
   </div>
 
   <div class="field">
-  <%= form.label :status %>
-  <%= form.select :status, Task.statuses.map { |k, v| [t("enum.task.status.#{k}"), k]}, include_blank: true %>
+    <%= form.label :status %>
+    <%= form.select :status, options_for_select(Task.statuses.map { |label, _value| [t("enums.task.status_enum.#{label}"), label.to_s] }, selected: params[:status] || 'todo') %>
   </div>
 
-  
-    <div class="actions">
-      <%= form.submit t("common.update_task"), id: "update-task" %>
-    </div>
-  <% end %>
+  <div class="actions">
+    <%= form.submit t("common.update_task"), id: "update-task" %>
+  </div>
+<% end %>
+
 <%= link_to t("common.back"), tasks_path, id: "back" %>
