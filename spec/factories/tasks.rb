@@ -1,14 +1,21 @@
+require 'date'
+require 'factory_bot_rails'
+
 FactoryBot.define do
-    # Nommez les données de test à créer "tâche"
-    # 「task」のように存在するクラス名のスネークケースをテストデータ名とする場合、そのクラスのテストデータが作成されます
-    factory :task do
-      title { 'Préparation des documents' }
-      content { 'Créer une proposition.' }
+  factory :task do
+    sequence(:title) { |n| "#{n}_task" }
+    content { "Sample Content" }
+    deadline_on { Date.today + rand(1..30).days }
+    priority { Task.priorities.keys.sample }
+    status { Task.statuses.keys.sample }
+    association :user
+
+    factory :admin_task do
+      association :user, factory: :admin_user
     end
-    # Nommez les données de test à créer "second_task"
-    # 「second_task」のように存在しないクラス名のスネークケースをテストデータ名とする場合、`class`オプションを使ってどのクラスのテストデータを作成するかを明示する必要があります
-    factory :second_task, class: Task do
-      title { 'Envoyer un e-mail' }
-      content { 'Envoyer un e-mail de vente à un client.' }
+
+    factory :general_task do
+      association :user, factory: :general_user
     end
   end
+end

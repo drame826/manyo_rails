@@ -40,4 +40,5 @@
   <% @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(10) %>
   <%= paginate @tasks %>
 <% end %>
+
 <%= link_to t('common.back'), admin_users_path, id: 'back' %>
