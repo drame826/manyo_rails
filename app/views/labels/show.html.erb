@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @label.name %>
+</p>
+<div class="form-group">
+<%= link_to t("common.edit"), edit_label_path(@label), class: "btn btn-primary" %> |
+<%= link_to t("common.back"), labels_path, class: "btn btn-link" %>
+</div>

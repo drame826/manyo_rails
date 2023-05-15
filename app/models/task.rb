@@ -4,7 +4,9 @@ class Task < ApplicationRecord
   validates :deadline_on, presence: true
   validates :priority, presence: true
   validates :status, presence: true
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
+  has_many :task_labels, dependent: :destroy
+  has_many :labels, through: :task_labels
 
   enum priority: { low: 0, medium: 1, high: 2 }, _suffix: true
   enum status: { todo: 0, doing: 1, done: 2 }, _suffix: true
@@ -39,10 +41,11 @@ class Task < ApplicationRecord
   scope :search_by_title, ->(search_title = nil) { where('title LIKE :search_title', search_title: "%#{search_title.strip}%") if search_title.present? && !search_title.strip.empty? }
   scope :filter_by_status, ->(status) { where(status: status) }
   
-  def self.search_tasks(search_title, status)
+  def self.search_tasks(search_title, status, label_ids)
     tasks = all
     tasks = tasks.search_by_title(search_title) if search_title.present?
     tasks = tasks.filter_by_status(status) if status.present?
-    tasks.in_status_order(status).order(created_at: :desc)
+    tasks = tasks.joins(:labels).where(labels: { id: label_ids }) if label_ids.present?
+    tasks.includes(:labels).order(created_at: :desc)
   end
 end

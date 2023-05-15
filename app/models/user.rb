@@ -1,11 +1,12 @@
 class User < ApplicationRecord
-  before_validation { email.downcase! }
+  before_validation { email.downcase! if email.present? }
   validates :email, uniqueness: { message: 'はすでに使用されています' }, confirmation: true, presence: true
   has_secure_password
   validates :name, presence: true
   validates :password, presence: true, confirmation: true, length: { minimum: 6 }, allow_blank: true
   attribute :admin, :boolean, default: false
   has_many :tasks, dependent: :destroy
+  has_many :labels, dependent: :destroy
 
   before_destroy do
     if admin? && User.where(admin: true).count == 1
